@@ -1,25 +1,33 @@
-import React from "react"
-import ReactDOM from "react-dom"
-// importar ambas
+import React from "react";
+import ReactDOM from "react-dom";
 
-//variable  page
-const page = (
+function Lista()  {
+return(
     <div>
-        <h1>List of feelings</h1>
-        <ol>
-            <li>😊 Happy</li>
-            <li>😞 Dissappointed</li>
-            <li>😢 Crying</li>
-            <li>😂 LOL</li>
-            <li>😍 In love</li>
-            <li>😜 Crazy</li>
-        </ol>
+        <h1>Lista Super</h1>
+        <h2>Aseo personal</h2>
+            <ul>
+                <img src={require ("./aseo.jpg")}  width={("280px")}/>
+                <li>Jabon de tocador</li>
+                <li>Nueva esponja</li>
+                <li>Shampoo</li>
+                <li>Pasta de dientes</li>
+        </ul>
+        <h2>Comida</h2>
+            <ul>
+                <img src={require("./comida.jpg")} width={("280px")}/>
+                <li>Jamon</li>
+                <li>Pan de caja</li>
+                <li>Queso</li> 
+            </ul>
+        <h2>Bebidas</h2>
+            <ul>
+                <img src={require("./bebidas.jpg")} width={("280px")}/>
+                <li>Jugo arandanos</li>
+                <li>Vodka</li>
+                <li>Jugo de limon</li>
+            </ul>
     </div>
-)
+)}
 
-//renderizando la variable en el DOM
-ReactDOM.render(page,document.getElementById("root"))
-// jsx retorna objetos de js
-//document.getElementById("root").append(JSON.stringify(page))
-
-
+ReactDOM.render(<Lista />, document.getElementById("root"))
