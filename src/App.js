@@ -1,6 +1,10 @@
-//import './App.css';[
-
 import React from "react";
+import { TodoCounter } from './TodoCounter';
+import { TodoSearch } from './TodoSearch';
+import { TodoList } from './TodoList';
+import { TodoItem } from "./TodoItem";
+import { CreateTodoButton } from "./CreateTodoButton";
+//import './App.css';
 
 //Primero se identifican los componentes que se van a utilizar
 // se identifica que elementos tendra cada componente y su funcionamiento
@@ -16,16 +20,16 @@ const todos = [
 function App() {
   return (
     <React.Fragment>
-    {/*<TodoCounter />*/}
-    <h2>Has completoado 2 de 3 ToDo's</h2>
-    {/*<TodoSearch />*/}
-    <input placeholder="Cebolla" />
-    {/* <TodoList>{todos.map(todo =>(
-      <TodoItem />
+    <TodoCounter />
+    <TodoSearch />
+
+   <TodoList>
+     {todos.map(todo => (
+      <TodoItem key={todo.text} text={todo.text} />
     ))}
-    </TodoList> */}
-    {/*<CreateTodoButton />*/}
-    <button>+</button>
+    </TodoList> 
+
+    <CreateTodoButton />
     </React.Fragment>
   );
 }
