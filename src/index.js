@@ -1,17 +1,45 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react"
+import ReactDOM from "react-dom"
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function Header(){
+    return(
+        <header>
+            <nav>
+                <img src={require("./logo.png")} width={"40px"} />
+            </nav>
+        </header>
+    )
+}
+function MainContent(){
+    return(
+        <div>
+            <h1>Que me esta gustando de react</h1>
+            <ol>
+                <li>Es muy facil de usar</li>
+                <li>El codigo es reutilizable cuando creamos componentes</li>
+                <li>Es de las librerias más populares</li>
+            </ol>
+        </div>
+    )
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function Footer(){
+    return(
+        <footer>
+            <small>2022 Nath Developer. All rights reserved.</small>
+        </footer>
+    )
+}
+
+function Page(){
+    return(
+        <React.Fragment>
+        <Header />
+        <MainContent />
+        <Footer />
+        </React.Fragment>
+
+    )
+}
+
+ReactDOM.render(<Page />,document.getElementById("root"))
