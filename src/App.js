@@ -11,7 +11,7 @@ import { CreateTodoButton } from "./CreateTodoButton";
 
 //se crea una const con un array con los todos los cuales tienen sus propiedades
 const todos = [
-  { text:"Revisar correo", completed: false },
+  { text:"Revisar correo", completed: true  },
   { text:"Ir al super", completed: false },
   { text:"Agendar al dentista", completed: false },
 ]
@@ -25,7 +25,11 @@ function App() {
 
    <TodoList>
      {todos.map(todo => (
-      <TodoItem key={todo.text} text={todo.text} />
+      <TodoItem 
+      key={todo.text} 
+      text={todo.text} 
+      completed={todo.completed}
+      />
     ))}
     </TodoList> 
 
@@ -36,5 +40,6 @@ function App() {
 // los {} son para escribir js en jsx
 //dentro de  TodoList se van a iterar los todos ,por cada elemento cada todo se va a renderizar
 // para comentar los commponentes se utiliza {/*....*/}
+//key se utiliza para identificar que esta renderizando en una lista de elementos
 
 export default App;

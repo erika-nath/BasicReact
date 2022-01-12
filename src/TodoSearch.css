@@ -1,0 +1,24 @@
+.TodoSearch{
+    border-radius: 8px;
+    background-color: #F7F7F7;
+    border: 3px solid plum;
+    margin: 0 24px;
+    height: 64px;
+    width: calc(100% - 62px);
+    font-size: 24px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 200;
+    color: dimgrey;
+    box-shadow: 0px 5px 50px plum;
+    }
+
+    .TodoSearch::placeholder{
+        color: #ABABAB  ;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight:400;  
+    }
+
+    .TodoSearch:focus{
+        outline-color: plum;
+    }
