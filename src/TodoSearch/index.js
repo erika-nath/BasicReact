@@ -1,26 +1,22 @@
 import React from "react";
 import "./TodoSearch.css";
 
-function TodoSearch(){
-    //estado
-    const [searchValue, setSearchValue] = React.useState ('');
-
+function TodoSearch({searchValue, setSearchValue}){
     //función evento del input, cambia el estado
-   const searchValueChange= (event) =>{
+const searchValueChange= (event) =>{
+        console.log(event.target.value);
         setSearchValue(event.target.value);
     };
 
-return[
+return(
     <input className="TodoSearch"
-    placeholder="Cebolla"
+    placeholder="Todos"
     //valor del input se conecta con la variable del estado que se va a ir actualizando 
     value={searchValue}
     //evento del buscador,con el nuevo estado
     onChange={searchValueChange}
-    />,
-    <p>{searchValue}</p>
-
-];
+    />
+    );
 }
 
 export {TodoSearch};
