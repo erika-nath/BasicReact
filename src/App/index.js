@@ -6,24 +6,74 @@ import { AppUI } from "./AppUI";
   { text:"Ir al super", completed: true },
   { text:"Agendar al dentista", completed: false },
 ]*/
+//creaando propio hook
+ /*useLocalStorage=>{
 
-//funcion para guaradr en local storage
-function App() {
-  //recuperar TODOs
-const localStorageTodos = localStorage.getItem('TODOS_V1')
-//variable guarda TODOS
-let parsedTodos;
-//Condicional si hay todos ó no hay
-if (!localStorageTodos){
-  localStorage.setItem("TODOS_V1",JSON.stringify([]));
-  parsedTodos = [];
+};*/
+function useLocalStorage(itemName,initialValue){
+  const[error,setError] = React.useState(false);
+  const[loading,setLoading] = React.useState(true);
+  const[item,setItem] = React.useState(initialValue);
 
-}else{
-  parsedTodos= JSON.parse(localStorageTodos);
+
+  React.useEffect(()=>{
+    setTimeout(()=>{
+      try{
+        const localStorageItem= localStorage.getItem(itemName);
+      let parsedItem;
+  
+      if (!localStorageItem){
+          localStorage.setItem(itemName,JSON.stringify(initialValue));
+          parsedItem = initialValue;
+      } else {
+        parsedItem= JSON.parse(localStorageItem);
+      }
+
+      setItem(parsedItem);
+      setLoading(false);
+      }  catch (error){
+          setError(error);
+      }
+    },1000);
+  });
+
+  
+
+
+  const saveItem = (newItem) =>{
+    try{
+      const stringifiedItem = JSON.stringify(newItem);
+    localStorage.setItem(itemName,stringifiedItem);
+    setItem(newItem);
+
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  //retorna los estados que estamos utilizando y como son + de 2 se agrega como objeto
+  return{
+    item,
+    saveItem,
+    loading,
+    error,
+  };
+  
+
 }
 
-const [todos, setTodos]= React.useState(parsedTodos);
-const[searchValue, setSearchValue]= React.useState("");
+function App() {
+  //se renombran 
+const {
+  item:todos,
+  saveItem: saveTodos,
+  loading,
+  error,
+}= useLocalStorage('TODOS_V1', []);
+
+
+  
+const[searchValue, setSearchValue]= React.useState('');
 // total de completadosy total de todos
 const completedTodos = todos.filter(todo=> todo.completed == true).length;
 const totalTodos = todos.length;
@@ -40,14 +90,6 @@ if(!searchValue.length >=1){
 
   });
 }
-
-//funcion que conecta localstorage con funcion de borrar y marcar TODOS
-const saveTodos = (newTodos) =>{
-  const stringifiedTodos = JSON.stringify(newTodos);
-  //stringifiedTodos es la nueva actualizacion de todos
-  localStorage.setItem('TODOS_V1',stringifiedTodos);
-  setTodos(newTodos);
-};
 
 
 const completeTodo = (text) => {
@@ -66,8 +108,11 @@ const deleteTodo = (text) => {
 };
 
 
+
   return (
     <AppUI 
+    loading={loading}
+    error={error}
     totalTodos={totalTodos}
     completedTodos={completedTodos}
     searchValue={searchValue}
@@ -77,6 +122,6 @@ const deleteTodo = (text) => {
     deleteTodo={deleteTodo}
     
     />
-  );
+    )
 }
 export default App;
